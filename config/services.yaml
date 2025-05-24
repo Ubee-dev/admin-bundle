@@ -1,0 +1,17 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+  
+  # auto-register services
+  Khalil1608\AdminBundle\:
+    resource: '../src/*'
+    exclude: '../src/{DependencyInjection,Entity,cookie_domain.php,Tests}'
+  
+  # controllers are imported separately to make sure they're public
+  # and have a tag that allows actions to type-hint services
+  Khalil1608\AdminBundle\Controller\:
+    resource: '../src/Controller'
+    public: true
+    tags: [ 'controller.service_arguments' ]

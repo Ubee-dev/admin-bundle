@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown documentation</title>
+
+    {% block stylesheet %}{% endblock %}
+</head>
+
+<body>
+<div class="md-documentation">
+    <aside class="md-documentation__aside">
+        <ul class="md-documentation__nav">
+            <li><a class="md-documentation__nav-item" href="#titles">Titres</a></li>
+            <li><a class="md-documentation__nav-item" href="#emphasis">Emphase</a></li>
+            <li><a class="md-documentation__nav-item" href="#links">Liens et boutons</a></li>
+            <li><a class="md-documentation__nav-item" href="#abbreviations">Abréviations</a></li>
+            <li><a class="md-documentation__nav-item" href="#images">Images</a></li>
+            <li><a class="md-documentation__nav-item" href="#videos">Vidéos</a></li>
+            <li><a class="md-documentation__nav-item" href="#iframes">Iframes</a></li>
+            <li><a class="md-documentation__nav-item" href="#tables">Tableaux</a></li>
+            <li><a class="md-documentation__nav-item" href="#lists">Listes</a></li>
+            <li><a class="md-documentation__nav-item" href="#blockquotes">Citations</a></li>
+            <li><a class="md-documentation__nav-item" href="#videotimes">Temps de vidéo</a></li>
+            <li><a class="md-documentation__nav-item" href="#notes-de-bas-de-page">Notes de bas de page</a></li>
+            <li><a class="md-documentation__nav-item" href="#exemples">Exemple de mise en page</a></li>
+        </ul>
+    </aside>
+
+    <section class="md-documentation__main">
+        <h1 class="title">Documentation markdown</h1>
+
+        <div class="md-documentation__chapo">
+            <p>Le markdown est un éditeur de texte offrant différentes options grâce à des boutons raccourcis. Les options ci-dessous ne sont pas toutes disponibles sur les différents markdowns des plateformes. Ceci est un choix bien réfléchi, il est préférable de s'en tenir aux options proposées pour une meilleure cohérence des sites.</p>
+            <p>Pour prévisualiser le contenu avant d'enregistrer vos modifications cliquez sur <span class="md-documentation__icon fas fa-eye"></span>. Cliquez une seconde fois pour revenir à l'édition.</p>
+            <p>Le rendu du markdown sera stylé en fonction de la marque.</p>
+            <p><strong>Nous vous recommandons de ne pas utiliser de HTML dans le Markdown. S'il vous manque des éléments pour mettre en page votre texte, merci de prévenir le Cluster !</strong></p>
+        </div>
+
+        <article id="titles">
+            <h2>Titres <span class="md-documentation__icon fas fa-heading"><sub>2</sub></span> <span class="md-documentation__icon fas fa-heading"><sub>3</sub></span></h2>
+
+            <p>Il existe des boutons raccourcis pour les titres H2 et H3, cependant il est possible d'aller jusqu'au H6.</p>
+
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code md-documentation__article-frame">
+## Titre H2
+### Titre H3
+#### Titre H4
+##### Titre H5
+###### Titre H6
+
+Il existe également une alternative pour le titre H2 qui génère le même rendu :
+
+Titre H2 alternatif
+------
+
+Il est également possible d'ajouter un id pour faire des liens avec ancre :
+
+## Titre H2 avec id {{ '{#titre-avec-id}' }}
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame">
+                    <h2>Titre H2</h2>
+                    <h3>Titre H3</h3>
+                    <h4>Titre H4</h4>
+                    <h5>Titre H5</h5>
+                    <h5>Titre H6</h5>
+
+                    Il existe également une alternative pour le titre H2 qui génère le même rendu :
+                    <h2>Titre H2</h2>
+
+                    Il est également possible d'ajouter une ancre sur titre :
+                    <h2 id="titre-avec-id">Titre H2 avec id</h2>
+                </div>
+            </div>
+            <p><em><b>Tips 1 : </b>Afin de garder une cohérence visuelle ainsi que vis à vis des moteurs de recherche, il est fortement recommandé de commencer par un H2 puis un H3 ainsi de suite et de ne pas metre deux H2 à la suite si ils ne sont pas séparés par un paragraphe de texte.</em></p>
+            <p><em><b>Tips 2 : </b>Si vous vous retrouvez à mettre deux titres de même niveau à la suite avec l'un en gras et l'autre en normal c'est peut être qu'il faut passer sur un niveau de titre suplémentaire (H3+H4)</em></p>
+        </article>
+
+        <article id="emphasis">
+            <h2>Emphase : gras <span class="md-documentation__icon fas fa-bold"></span>, italic <span class="md-documentation__icon fas fa-italic"></span>, barré et indice <span class="md-documentation__icon fas fa-superscript"></span></h2>
+
+            <div class=" md-documentation__article-content">
+
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+**Texte gras** ou __texte en gras__
+
+*Texte en italic* ou _texte en italic_
+
+~~Texte barré~~
+
+Mon 1^er^ indice
+                            </pre>
+
+                <div class="rich-content  md-documentation__article-frame">
+                    <strong>Texte en gras</strong> ou <strong>texte en gras</strong>
+                    <br/><br/>
+                    <i>Texte en italic</i> ou <i>texte en italic</i>
+                    <br/><br/>
+                    <strike>Texte barré</strike>
+                    <br/><br/>
+                    Mon 1<sup>er</sup> indice
+                </div>
+            </div>
+        </article>
+
+        <article id="links">
+            <h2>Liens <span class="md-documentation__icon fas fa-link"></span> et boutons <span class="md-documentation__icon fas fa-arrow-right"></span></h2>
+
+            <p>Le libélé est à renseigner entre crochets, et l'url entre parenthèses.<br/>
+                Préferer les urls relatives, sans domaine, si c'est un lien qui pointe sur le même site, on écrira <strong>/mapage</strong> plutôt que <strong>http://mondomaine.com/mapage</strong>.<br/> Il est également possible de mettre un lien vers l'ancre d'une page.</p>
+
+            <p>Pour les boutons, c'est la même syntaxe mais avec des crochets autour. Cela générera un bouton centré.</p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+[lien](/mapage)
+
+[lien avec ancre](/mapage#ancre)
+
+[lien avec ancre sur la page courante](#ancre)
+
+{[texte du bouton](/mapage)}
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame">
+                    <a href="/mapage">lien</a>
+                    <br/><br/>
+                    <a href="/mapage#ancre">lien avec ancre</a>
+                    <br/><br/>
+                    <a href="#ancre">lien avec ancre sur la page courante</a>
+                    <div class="btn-container">
+                        <a href="/mapage" class="btn btn_full-width btn_dark">texte du bouton</a>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article id="abbreviations">
+            <h2>Abréviations <span class="md-documentation__icon fas fa-info"></span></h2>
+
+            <p>
+                Il n'est pas obligatoire de l'utiliser pour toutes les abréviations d'un document mais voici quelques cas où cet élément s'avère pertinent :
+            </p>
+            <ul>
+                <li>- Lorsqu'une abréviation est utilisée et qu'on souhaite fournir une définition ou une explication en dehors du contenu du document.</li>
+                <li>- Lorsqu'une abréviation fait partie d'un jargon ou d'un vocabulaire qui risque d'être inconnu du lecteur.</li>
+                <li>- Lorsqu'un mot est trop long pour être placé dans une cellule de tableau.</li>
+            </ul>
+            <br/>
+
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+L'EPS est ma matière préférée
+*[EPS]: Éducation Physique et Sportive
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame">
+                    L'<abbr title="Éducation Physique et Sportive">EPS</abbr> est ma matière préférée
+                </div>
+            </div>
+            <p><em><b>Tips : </b>La définition de l'abbréviation peut être placée n'importe où dans le markdown.</em></p>
+        </article>
+
+        <article id="images">
+            <h2>Images <span class="md-documentation__icon far fa-image"></span></h2>
+
+            <p>Pour ajouter une image hébergée sur le net, il faut renseigner le texte alternatif entre crochets et l'url entre parenthèses, le tout précédé d'un <strong>!</strong>. Le texte alternatif s'affichera si l'image n'est plus disponible sur le net ou lorsqu'un utilisateur active un lecteur de site (malvoyant).<br/>
+                Préferer les urls relatives si c'est une image hebergée sur le même domaine, on écrira <strong>/monimage</strong> plutôt que <strong>http://mondomaine.com/monimage</strong>.
+            </p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+![texte alternatif](/monimage)
+Logo cartésia Éducation *cartesia-education.Fr* - 2023
+                            </pre>
+
+                <div class="rich-content  md-documentation__article-frame">
+                    <img class="img-fluid" src="/bundles/cartesiacore/images/logos/cartesia-education.svg" alt="texte alternatif">
+                    <p>Logo de cartésia Éducation, <em>cartesia-education.fr</em> - 2023  </p>
+                </div>
+            </div>
+            <p><em><b>Tips : </b>Il est recommandé de lui donner un nom et préciser la source cela permet au lecteur de mieux la comprendre, par exemple : expliquer ce que montre un schéma</em></p>
+        </article>
+
+        <article id="videos">
+            <h2>Vidéos <span class="md-documentation__icon fas fa-video"></span></h2>
+            <h3>Youtube</h3>
+            <p>Pour ajouter une vidéo youtube, il suffit d'entrer l'url de la vidéo en utilisant le raccourci.
+            </p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+{youtube:https://www.youtube.com/watch?v=id-video}
+                            </pre>
+
+                <div class="rich-content  md-documentation__article-frame">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/id-video?modestbranding=1&rel=0" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+            <h3>Viméo</h3>
+            <p>Pour ajouter une vidéo Viméo, il suffit d'entrer l'url de la vidéo en utilisant le raccourci.
+            </p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+                                {vimeo:https://www.vimeo.com/id-video}
+                            </pre>
+
+                <div class="rich-content  md-documentation__article-frame">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://player.vimeo.com/video/407755853?title=0&portrait=0&autoplay=0" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article id="iframes">
+            <h2>Iframes <span class="md-documentation__icon far fa-file-code"></span></h2>
+
+            <p>Pour ajouter une iframe, il suffit d'entrer l'url ou le md-documentation__code de l'iframe en utilisant le raccourci. Une hauteur de 500 est mise par défaut, il est possible de la modifier par la suite pour ajuster la hauteur avec son contenu.<br/> Ajouter une iframe en utilisant le composant, et non le md-documentation__code, permet d'afficher un loader pendant que l'iframe se charge.
+            </p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+Une iframe avec la hauteur par défaut :
+
+{iframe:https://www.google.com/,height:500}
+
+Une iframe avec une hauteur de 100 :
+
+{iframe:https://www.google.com/,height:100}
+                            </pre>
+
+                <div class="rich-content  md-documentation__article-frame">
+                    <p>Une iframe avec la hauteur par défaut :</p>
+                    <div class="js-iframe-with-loader-container iframe-with-loader-container iframe-with-loader-container_loaded" data-loading-html="<i class='fas fa-spinner fa-pulse fa-3x fa-fw iframe-with-loader-container__loader'></i>" style="height: 500px;">
+                        <iframe src="https://www.google.com?" class="js-iframe-with-loader" height="500px"></iframe>
+                    </div>
+                    <br/><br/>
+                    <p>Une iframe avec une hauteur de 100 :</p>
+                    <div class="js-iframe-with-loader-container iframe-with-loader-container iframe-with-loader-container_loaded" data-loading-html="<i class='fas fa-spinner fa-pulse fa-3x fa-fw iframe-with-loader-container__loader'></i>"  style="height: 100px;">
+                        <iframe src="https://www.google.com/" class="js-iframe-with-loader" height="100px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article id="tables">
+            <h2>Tableaux <span class="md-documentation__icon fas fa-table"></span></h2>
+
+            <p>Attention à ne pas abuser des tableaux, il faut garder en tête qu'ils ne sont pas faciles à lire sur mobile. Limiter le nombre de colonnes (2 ou 3 max).</p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+| Colonne 1 | Colonne 2 |
+| --------- | --------- |
+| data 1 | data 4 |
+| data 2 | data 5 |
+| data 3 | data 6 |
+
+Texte aligné à droite :
+
+| Colonne 1 | Colonne 2 |
+| --------: | --------: |
+| data 1 | data 3 |
+| data 2 | data 4 |
+
+Texte centré :
+
+| Colonne 1 | Colonne 2 |
+| :-------: | :-------: |
+| data 1 | data 3 |
+| data 2 | data 4 |
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Colonne 1</th>
+                                <th>Colonne 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>data 1</td>
+                                <td>data 4</td>
+                            </tr>
+                            <tr>
+                                <td>data 2</td>
+                                <td>data 5</td>
+                            </tr>
+                            <tr>
+                                <td>data 3</td>
+                                <td>data 6</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p>Texte aligné à droite :</p>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="text-align: right;">Colonne 1</th>
+                                <th style="text-align: right;">Colonne 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="text-align: right;">data 1</td>
+                                <td style="text-align: right;">data 3</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: right;">data 2</td>
+                                <td style="text-align: right;">data 4</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <p>Texte centré :</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th style="text-align: center;">Colonne 1</th>
+                                <th style="text-align: center;">Colonne 2</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="text-align: center;">data 1</td>
+                                <td style="text-align: center;">data 3</td>
+                            </tr>
+                            <tr>
+                                <td style="text-align: center;">data 2</td>
+                                <td style="text-align: center;">data 4</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article id="lists">
+            <h2>Listes <span class="md-documentation__icon fas fa-list-ul"></span></h2>
+            <p>Pour les listes à puces, il faut commencer les lignes par <strong>*</strong>, <strong>+</strong>, ou <strong>-</strong>, les trois auront le même rendu.</p>
+            <p>Pour les listes ordonnées, il faut commencer la ligne par le numéro de la puce suivi d'un point.</p>
+            <p>Pour commencer une sous-liste il suffit d'indenter avec deux espaces.</p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+Liste à puces :
+
++ item 1
++ item 2
+  + item de sous-liste 1
+  + item de sous-liste 2
+
+Liste à puces :
+
+- item 1
+- item 2
+
+Liste à puces :
+
+* item 1
+* item 2
+
+Liste ordonnée :
+
+1. item 1
+2. item 2
+  - item de sous-liste 1
+  - item de sous-liste 2
+3. item 3
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame">
+                    <p>Liste à puces :</p>
+                    <ul>
+                        <li>item 1</li>
+                        <li>
+                            item 2
+                            <ul>
+                                <li>item de sous-liste 1</li>
+                                <li>item de sous-liste 2</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p>Liste à puces :</p>
+                    <ul>
+                        <li>item 1</li>
+                        <li>item 2</li>
+                    </ul>
+                    <p>Liste à puces :</p>
+                    <ul>
+                        <li>item 1</li>
+                        <li>item 2</li>
+                    </ul>
+                    <p>Liste ordonnée :</p>
+                    <ol>
+                        <li>item 1</li>
+                        <li>
+                            item 2
+                            <ul>
+                                <li>item de sous-liste 1</li>
+                                <li>item de sous-liste 2</li>
+                            </ul>
+                        </li>
+                        <li>item 3</li>
+                    </ol>
+                </div>
+            </div>
+        </article>
+
+        <article id="blockquotes">
+            <h2>Citations <span class="md-documentation__icon fas fa-quote-left"></span></h2>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame ">
+> une citation est un paragraphe ouvert par un chevron fermant
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame ">
+                    <blockquote class="blockquote">
+                        <p>une citation est un paragraphe ouvert par un chevron fermant</p>
+                    </blockquote>
+                </div>
+            </div>
+            <p><em><b>Tips : </b>Il est recommandé de mettre le nom de l'auteur est la nom de la source sous la citation pour que le lecteur puisse la retrouver si il le souhaite</em></p>
+        </article>
+
+        <article id="videotimes">
+            <h2>Temps de vidéo <span class="md-documentation__icon fas fa-step-forward"></span></h2>
+            <p>Sur la live-platform, il est possible de faire un lien vers un temps de la vidéo du live en utilisant le raccourci. Il faudra alors rentrer le temps sous le format 0:00:00 si le temps se compte en heures et 0:00 s'il se compte en minutes ou secondes.</p>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+{videotime|1:23:12}
+
+{videotime|3:33}
+
+{videotime|0:15}
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame ">
+                    <a href="#" data-video-time="4992" class="js-video-time info__video-time">1:23:12</a>
+                    <br/><br/>
+                    <a href="#" data-video-time="213" class="js-video-time info__video-time">3:33</a>
+                    <br/><br/>
+                    <a href="#" data-video-time="15" class="js-video-time info__video-time">0:15</a>
+                </div>
+            </div>
+        </article>
+
+        <article id="notes-de-bas-de-page">
+            <h2>Notes de bas de page <span class="md-documentation__icon fas fa-hand-point-down"></span></h2>
+
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+Satisfait ou remboursé [^1]
+
+Autres conditions [^2]
+
+[^1]: À condition d'être gentil et de cliquer [ici](https://www.google.fr/).
+[^2]: Faire un virement de 3000€ au cluster
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame ">
+                    <p>Satisfait ou remboursé <sup><a href="#fn:1" class="footnote-ref">1</a></sup></p>
+                    <p>Autres conditions <sup><a href="#fn:2" class="footnote-ref">2</a></sup></p>
+
+                    <div class="footnotes">
+                        <hr>
+                        <ol>
+                            <li id="fn:1">
+                                <p>À condition d'être gentil et de cliquer <a href="https://www.google.fr/" class="js-external-link-target" target="_blank">ici</a>.&nbsp;<a href="#fnref1:1" rev="footnote" class="footnote-backref">↩</a></p>
+                            </li>
+                            <li id="fn:2">
+                                <p>Faire un virement de 3000€ au cluster&nbsp;<a href="#fnref1:2" rev="footnote" class="footnote-backref">↩</a></p>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <p><em><b>Tips : </b>La définition de la note peut être placée n'importe où dans le markdown.</em></p>
+        </article>
+
+        <article id="exemples">
+            <h2>Exemple de mise en page</h2>
+
+            <h3>Bibliographie</h3>
+            <div class=" md-documentation__article-content">
+                            <pre class="md-documentation__code  md-documentation__article-frame">
+* [Les cours du soir ](https://www.objectif-crpe.fr/), *écrit par Jean dupont — 2022*
+* [comment gerer une classe ](https://www.objectif-crpe.fr/), *Devenir professeur.fr*
+* [Le déroulement d'une classe](https://www.objectif-crpe.fr/), Vidéo de *Après-le-crpe.fr*
+* [Écrire sont premier cours pour des CE1-CE2](http://objectif-crpe.fr), *Comment-devenir-professeur-des-écoles.fr*
+                            </pre>
+                <div class="rich-content  md-documentation__article-frame ">
+                    <ul>
+                        <li><a href="https://www.objectif-crpe.fr/" class="js-external-link-target" target="_blank">Les cours du soir </a>, écrit par Jean DUPONT, <em>objectif-crpe.fr</em> — 2022 </li>
+                        <li><a href="https://www.objectif-crpe.fr/" class="js-external-link-target" target="_blank">Comment gerer une classe </a>, <em>Devenir professeur.fr</em> </li>
+                        <li><a href="https://www.objectif-crpe.fr/" class="js-external-link-target" target="_blank">Le déroulement d'une classe</a>, Vidéo de <em>Après-le-crpe.fr</em> </li>
+                        <li><a href="http://objectif-crpe.fr" class="js-external-link-target" target="_blank">Écrire sont premier cours pour des CE1-CE2</a>, <em>Comment-devenir-professeur-des-écoles.fr</em></li>
+                    </ul>
+                </div>
+            </div>
+        </article>
+
+    </section>
+</div>
+</body>
+</html>

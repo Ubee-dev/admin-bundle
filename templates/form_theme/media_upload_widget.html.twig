@@ -1,0 +1,15 @@
+{% block media_upload_widget %}
+    {# Récupérer le média directement depuis les variables du formulaire #}
+    {% set media = form.vars.media %}
+
+    {# Afficher le média existant s'il est présent #}
+    {% if media is not null %}
+        <div class="mb-2">
+            {# Utiliser la variable globale mediaManager #}
+            <img src="{{ mediaManager.getWebPath(media) }}" alt="" style="max-height:200px;" />
+        </div>
+    {% endif %}
+
+    {# Afficher le champ d'upload #}
+    {{ form_widget(form) }}
+{% endblock %}

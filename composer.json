@@ -1,0 +1,23 @@
+{
+  "name": "khalil1608/admin-bundle",
+  "description": "Admin bundle",
+  "type": "symfony-bundle",
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "Khalil1608\\AdminBundle\\": "src/",
+      "Khalil1608\\AdminBundle\\Tests\\": "tests/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Khalil1608\\AdminBundle\\Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "easycorp/easyadmin-bundle": "^4.24",
+    "khalil1608/lib-bundle": "1.*"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable" : true
+}
