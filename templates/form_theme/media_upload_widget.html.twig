@@ -1,15 +1,124 @@
 {% block media_upload_widget %}
     {# Récupérer le média directement depuis les variables du formulaire #}
     {% set media = form.vars.media %}
+    {% set show_metadata = form.vars.show_metadata|default(true) %}
+    {% set show_description = form.vars.show_description|default(false) %}
 
-    {# Afficher le média existant s'il est présent #}
-    {% if media is not null %}
-        <div class="mb-2">
-            {# Utiliser la variable globale mediaManager #}
-            <img src="{{ mediaManager.getWebPath(media) }}" alt="" style="max-height:200px;" />
+    <div class="media-upload-widget">
+        {# Afficher le média existant s'il est présent #}
+        {% if media is not null %}
+            <div class="current-media mb-3 p-3 border rounded">
+                <div class="media-preview">
+                    {% if media.isImage %}
+                        <img src="{{ mediaManager.getWebPath(media) }}"
+                             alt="{{ media.altOrFallback }}"
+                             title="{{ media.title }}"
+                             class="img-thumbnail"
+                             style="max-height: 200px;" />
+                    {% else %}
+                        <div class="file-info p-3 bg-light rounded">
+                            <i class="fas fa-file"></i>
+                            <span class="ms-2">{{ media.filename }}</span>
+                            <small class="text-muted d-block">{{ (media.contentSize / 1024) | round(1) }} KB</small>
+                        </div>
+                    {% endif %}
+                </div>
+
+                {% if show_metadata and media.isImage %}
+                    <div class="media-metadata mt-2">
+                        {% if media.alt %}
+                            <small class="text-muted d-block"><strong>Alt:</strong> {{ media.alt }}</small>
+                        {% endif %}
+                        {% if media.title %}
+                            <small class="text-muted d-block"><strong>Titre:</strong> {{ media.title }}</small>
+                        {% endif %}
+                        {% if show_description and media.description %}
+                            <small class="text-muted d-block"><strong>Description:</strong> {{ media.description }}</small>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {# Nouveau fichier à uploader #}
+        <div class="file-upload-section">
+            {% if form.file is defined %}
+                {{ form_row(form.file, {
+                    'label': media ? 'Remplacer le fichier' : 'Choisir un fichier'
+                }) }}
+            {% else %}
+                {# Fallback pour l'ancien comportement (formulaire simple) #}
+                {{ form_widget(form, {
+                    'attr': {
+                        'class': 'form-control'
+                    }
+                }) }}
+            {% endif %}
         </div>
-    {% endif %}
 
-    {# Afficher le champ d'upload #}
-    {{ form_widget(form) }}
+        {# Champs de métadonnées (seulement si activés et pour les images) #}
+        {% if show_metadata and form.alt is defined %}
+            <div class="metadata-section mt-3">
+                <h6 class="text-muted mb-2">
+                    <i class="fas fa-tags me-1"></i>
+                    Métadonnées d'accessibilité
+                </h6>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        {{ form_row(form.alt, {
+                            'help': 'Description courte pour les lecteurs d\'écran'
+                        }) }}
+                    </div>
+                    <div class="col-md-6">
+                        {{ form_row(form.title, {
+                            'help': 'Texte affiché au survol de l\'image'
+                        }) }}
+                    </div>
+                </div>
+
+                {% if show_description and form.description is defined %}
+                    <div class="mt-2">
+                        {{ form_row(form.description, {
+                            'help': 'Description détaillée (optionnelle)'
+                        }) }}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        {# Messages d'aide #}
+        {% if media is null %}
+            <small class="form-text text-muted">
+                {% if show_metadata %}
+                    Vous pourrez ajouter les métadonnées d'accessibilité après avoir sélectionné un fichier.
+                {% endif %}
+            </small>
+        {% endif %}
+    </div>
+
+    {# CSS inline pour améliorer l'apparence #}
+    <style>
+        .media-upload-widget .current-media {
+            background-color: #f8f9fa;
+        }
+
+        .media-upload-widget .media-preview {
+            text-align: center;
+        }
+
+        .media-upload-widget .file-info {
+            text-align: center;
+        }
+
+        .media-upload-widget .metadata-section {
+            border-top: 1px solid #dee2e6;
+            padding-top: 1rem;
+        }
+
+        .media-upload-widget .img-thumbnail {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
 {% endblock %}

@@ -2,7 +2,7 @@
   "name": "khalil1608/admin-bundle",
   "description": "Admin bundle",
   "type": "symfony-bundle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "autoload": {
     "psr-4": {
       "Khalil1608\\AdminBundle\\": "src/",
