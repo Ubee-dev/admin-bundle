@@ -1,0 +1,13 @@
+{# Alternative si field.value ne fonctionne pas #}
+<span class="file-size">
+    {% set size = entity.instance.contentSize %}
+    {% if size < 1024 %}
+        {{ size }} B
+    {% elseif size < 1048576 %}
+        {{ (size / 1024) | round(1) }} KB
+    {% elseif size < 1073741824 %}
+        {{ (size / 1048576) | round(1) }} MB
+    {% else %}
+        {{ (size / 1073741824) | round(1) }} GB
+    {% endif %}
+</span>

@@ -1,0 +1,43 @@
+{# templates/Admin/media/filename.html.twig #}
+<div class="media-filename">
+    {% set media = entity.instance %}
+
+    {% if media.isImage and not media.private %}
+        <div class="d-flex align-items-center">
+            {# Pour les images publiques, on peut essayer d'afficher une miniature #}
+            <div class="me-2">
+                <i class="fa fa-image text-primary" style="font-size: 24px;"></i>
+            </div>
+            <div>
+                <strong>{{ media.filename }}</strong>
+                {% if media.alt %}
+                    <br><small class="text-muted">{{ media.alt }}</small>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <div class="d-flex align-items-center">
+            {% if media.contentType starts with 'image/' %}
+                <i class="fa fa-image text-primary me-2"></i>
+            {% elseif media.contentType starts with 'video/' %}
+                <i class="fa fa-video text-info me-2"></i>
+            {% elseif media.contentType starts with 'audio/' %}
+                <i class="fa fa-music text-success me-2"></i>
+            {% elseif media.contentType == 'application/pdf' %}
+                <i class="fa fa-file-pdf text-danger me-2"></i>
+            {% else %}
+                <i class="fa fa-file text-secondary me-2"></i>
+            {% endif %}
+
+            <div>
+                <strong>{{ media.filename }}</strong>
+                {% if media.private %}
+                    <span class="badge bg-warning ms-2">Private</span>
+                {% endif %}
+                {% if media.alt %}
+                    <br><small class="text-muted">{{ media.alt }}</small>
+                {% endif %}
+            </div>
+        </div>
+    {% endif %}
+</div>

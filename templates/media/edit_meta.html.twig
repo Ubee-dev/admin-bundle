@@ -1,0 +1,133 @@
+{# templates/Admin/media/edit_meta.html.twig #}
+{% extends '@EasyAdmin/layout.html.twig' %}
+
+{% block content_title %}
+    {{ 'admin.media.edit_meta'|trans({}, 'admin') }}
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title">
+                        <i class="fa fa-edit"></i>
+                        {{ 'admin.media.edit_meta'|trans({}, 'admin') }} : {{ media.filename }}
+                    </h5>
+                </div>
+                <div class="card-body">
+                    {% if webPath %}
+                        <div class="mb-4">
+                            <h6>{{ 'admin.media.preview'|trans({}, 'admin') }}</h6>
+                            {% if media.contentType starts with 'image/' %}
+                                <img src="{{ webPath }}"
+                                     alt="{{ media.alt ?: media.filename }}"
+                                     title="{{ media.title ?: media.filename }}"
+                                     class="img-thumbnail"
+                                     style="max-width: 300px; max-height: 300px;">
+                            {% else %}
+                                <div class="alert alert-info">
+                                    <i class="fa fa-file"></i>
+                                    {{ 'admin.media.file_type'|trans({}, 'admin') }}: {{ media.contentType }}
+                                    <br>
+                                    <a href="{{ webPath }}" target="_blank" class="btn btn-sm btn-primary mt-2">
+                                        <i class="fa fa-external-link"></i>
+                                        {{ 'admin.media.open_file'|trans({}, 'admin') }}
+                                    </a>
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+
+                    <form method="post" novalidate>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="alt" class="form-label">
+                                        {{ 'admin.media.field.alt'|trans({}, 'admin') }}
+                                    </label>
+                                    <input type="text"
+                                           id="alt"
+                                           name="alt"
+                                           class="form-control"
+                                           value="{{ media.alt|default('') }}"
+                                           maxlength="255">
+                                    <div class="form-text">
+                                        {{ 'admin.media.field.alt_help'|trans({}, 'admin') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">
+                                        {{ 'admin.media.field.title'|trans({}, 'admin') }}
+                                    </label>
+                                    <input type="text"
+                                           id="title"
+                                           name="title"
+                                           class="form-control"
+                                           value="{{ media.title|default('') }}"
+                                           maxlength="255">
+                                    <div class="form-text">
+                                        {{ 'admin.media.field.title_help'|trans({}, 'admin') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <h6>{{ 'admin.media.file_info'|trans({}, 'admin') }}</h6>
+                            <table class="table table-sm">
+                                <tr>
+                                    <th>{{ 'admin.media.field.filename'|trans({}, 'admin') }}</th>
+                                    <td>{{ media.filename }}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.content_type'|trans({}, 'admin') }}</th>
+                                    <td>{{ media.contentType }}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.content_size'|trans({}, 'admin') }}</th>
+                                    <td>
+                                        {% set size = media.contentSize %}
+                                        {% if size < 1024 %}
+                                            {{ size }} B
+                                        {% elseif size < 1048576 %}
+                                            {{ (size / 1024)|round(1) }} KB
+                                        {% elseif size < 1073741824 %}
+                                            {{ (size / 1048576)|round(1) }} MB
+                                        {% else %}
+                                            {{ (size / 1073741824)|round(1) }} GB
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.created_at'|trans({}, 'admin') }}</th>
+                                    <td>{{ media.createdAt|date('d/m/Y H:i:s') }}</td>
+                                </tr>
+                                {% if media.updatedAt %}
+                                    <tr>
+                                        <th>{{ 'admin.media.field.updated_at'|trans({}, 'admin') }}</th>
+                                        <td>{{ media.updatedAt|date('d/m/Y H:i:s') }}</td>
+                                    </tr>
+                                {% endif %}
+                            </table>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-save"></i>
+                                {{ 'admin.action.save'|trans({}, 'admin') }}
+                            </button>
+                            <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('index') }}"
+                               class="btn btn-secondary ms-2">
+                                <i class="fa fa-arrow-left"></i>
+                                {{ 'admin.action.back_to_list'|trans({}, 'admin') }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

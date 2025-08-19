@@ -1,0 +1,184 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+{% trans_default_domain "admin" %}
+
+{% block page_title %}{{ 'admin.media.upload.title'|trans }}{% endblock %}
+
+{% block main %}
+    <div class="content">
+        <div class="content-header">
+            <div class="content-header-title">
+                <h1 class="title">
+                    <i class="fa fa-upload"></i>
+                    {{ 'admin.media.upload.title'|trans }}
+                </h1>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data" class="media-upload-form">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="mb-3">
+                                    <label for="media_file" class="form-label required">
+                                        {{ 'admin.media.field.file'|trans }}
+                                    </label>
+                                    <input type="file"
+                                           id="media_file"
+                                           name="media_file"
+                                           class="form-control"
+                                           required
+                                           accept="image/*,video/*,audio/*,.pdf,.doc,.docx,.txt">
+                                    <div class="form-text">
+                                        {{ 'admin.media.help.file_upload'|trans }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="alt" class="form-label">
+                                        {{ 'admin.media.field.alt'|trans }}
+                                    </label>
+                                    <input type="text"
+                                           id="alt"
+                                           name="alt"
+                                           class="form-control"
+                                           placeholder="{{ 'admin.media.placeholder.alt'|trans }}">
+                                    <div class="form-text">
+                                        {{ 'admin.media.help.alt'|trans }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">
+                                        {{ 'admin.media.field.title'|trans }}
+                                    </label>
+                                    <input type="text"
+                                           id="title"
+                                           name="title"
+                                           class="form-control"
+                                           placeholder="{{ 'admin.media.placeholder.title'|trans }}">
+                                    <div class="form-text">
+                                        {{ 'admin.media.help.title'|trans }}
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <div class="form-check">
+                                        <input type="checkbox"
+                                               id="is_private"
+                                               name="is_private"
+                                               class="form-check-input"
+                                               value="1">
+                                        <label for="is_private" class="form-check-label">
+                                            {{ 'admin.media.field.private'|trans }}
+                                        </label>
+                                    </div>
+                                    <div class="form-text">
+                                        {{ 'admin.media.help.private'|trans }}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="upload-preview" id="upload-preview" style="display: none;">
+                                    <h6>{{ 'admin.media.preview'|trans }}</h6>
+                                    <div class="preview-content">
+                                        <img id="image-preview" src="" alt="" style="max-width: 100%; display: none;">
+                                        <div id="file-info" style="display: none;">
+                                            <p><strong>{{ 'admin.media.field.filename'|trans }}:</strong> <span id="file-name"></span></p>
+                                            <p><strong>{{ 'admin.media.field.content_size'|trans }}:</strong> <span id="file-size"></span></p>
+                                            <p><strong>{{ 'admin.media.field.content_type'|trans }}:</strong> <span id="file-type"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-upload"></i>
+                                {{ 'admin.media.action.upload'|trans }}
+                            </button>
+                            <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('index') }}"
+                               class="btn btn-secondary">
+                                {{ 'admin.form.cancel'|trans }}
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('media_file').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const preview = document.getElementById('upload-preview');
+                const imagePreview = document.getElementById('image-preview');
+                const fileInfo = document.getElementById('file-info');
+
+                preview.style.display = 'block';
+
+                // Afficher les informations du fichier
+                document.getElementById('file-name').textContent = file.name;
+                document.getElementById('file-size').textContent = formatFileSize(file.size);
+                document.getElementById('file-type').textContent = file.type;
+                fileInfo.style.display = 'block';
+
+                // Si c'est une image, afficher la prévisualisation
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.style.display = 'none';
+                }
+
+                // Auto-générer l'alt text basé sur le nom du fichier si vide
+                const altInput = document.getElementById('alt');
+                if (!altInput.value) {
+                    const nameWithoutExt = file.name.replace(/\.[^/.]+$/, "");
+                    const altText = nameWithoutExt.replace(/[_-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    altInput.value = altText;
+                }
+            }
+        });
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+    </script>
+
+    <style>
+        .media-upload-form {
+            max-width: none;
+        }
+
+        .upload-preview {
+            border: 1px solid #dee2e6;
+            border-radius: 0.375rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+        }
+
+        .preview-content img {
+            border-radius: 0.375rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .form-actions {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #dee2e6;
+        }
+    </style>
+{% endblock %}

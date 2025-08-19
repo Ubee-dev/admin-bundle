@@ -1,0 +1,263 @@
+{% extends '@EasyAdmin/layout.html.twig' %}
+{% trans_default_domain "admin" %}
+
+{% block page_title %}{{ 'admin.media.view.title'|trans }}{% endblock %}
+
+{% block main %}
+    <div class="content">
+        <div class="content-header">
+            <div class="content-header-title">
+                <h1 class="title">
+                    <i class="fa fa-eye"></i>
+                    {{ 'admin.media.view.title'|trans }}: {{ media.filename }}
+                </h1>
+            </div>
+            <div class="content-header-toolbar">
+                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('index') }}"
+                   class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i>
+                    {{ 'admin.action.back_to_list'|trans }}
+                </a>
+            </div>
+        </div>
+
+        <div class="content-body">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ 'admin.media.preview'|trans }}</h5>
+                        </div>
+                        <div class="card-body text-center">
+                            {% if media.isImage %}
+                                <img src="{{ webPath }}"
+                                     alt="{{ media.altOrFallback }}"
+                                     title="{{ media.title }}"
+                                     class="img-fluid media-preview-image"
+                                     style="max-height: 500px; border-radius: 0.375rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                            {% elseif media.contentType starts with 'video/' %}
+                                <video controls class="media-preview-video" style="max-width: 100%; max-height: 500px;">
+                                    <source src="{{ webPath }}" type="{{ media.contentType }}">
+                                    {{ 'admin.media.video_not_supported'|trans }}
+                                </video>
+                            {% elseif media.contentType starts with 'audio/' %}
+                                <div class="audio-preview">
+                                    <i class="fa fa-music fa-5x text-muted mb-3"></i>
+                                    <audio controls class="w-100">
+                                        <source src="{{ webPath }}" type="{{ media.contentType }}">
+                                        {{ 'admin.media.audio_not_supported'|trans }}
+                                    </audio>
+                                </div>
+                            {% elseif media.contentType == 'application/pdf' %}
+                                <div class="pdf-preview">
+                                    <i class="fa fa-file-pdf fa-5x text-danger mb-3"></i>
+                                    <p>{{ 'admin.media.pdf_preview_not_available'|trans }}</p>
+                                    <a href="{{ webPath }}" target="_blank" class="btn btn-outline-primary">
+                                        <i class="fa fa-external-link-alt"></i>
+                                        {{ 'admin.media.action.open_pdf'|trans }}
+                                    </a>
+                                </div>
+                            {% else %}
+                                <div class="file-preview">
+                                    <i class="fa fa-file fa-5x text-muted mb-3"></i>
+                                    <p>{{ 'admin.media.preview_not_available'|trans }}</p>
+                                    <small class="text-muted">{{ media.contentType }}</small>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ 'admin.media.details'|trans }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-sm">
+                                <tbody>
+                                <tr>
+                                    <th>{{ 'admin.media.field.filename'|trans }}</th>
+                                    <td>{{ media.filename }}</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.content_type'|trans }}</th>
+                                    <td>
+                                        <span class="badge bg-secondary">{{ media.contentType }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.content_size'|trans }}</th>
+                                    <td>{{ (media.contentSize / 1024) | round(2) }} KB</td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.context'|trans }}</th>
+                                    <td>
+                                        <span class="badge bg-info">{{ media.context }}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.private'|trans }}</th>
+                                    <td>
+                                        {% if media.private %}
+                                            <span class="badge bg-warning">{{ 'admin.common.yes'|trans }}</span>
+                                        {% else %}
+                                            <span class="badge bg-success">{{ 'admin.common.no'|trans }}</span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>{{ 'admin.media.field.created_at'|trans }}</th>
+                                    <td>{{ media.createdAt|date('d/m/Y H:i') }}</td>
+                                </tr>
+                                {% if media.alt %}
+                                    <tr>
+                                        <th>{{ 'admin.media.field.alt'|trans }}</th>
+                                        <td>{{ media.alt }}</td>
+                                    </tr>
+                                {% endif %}
+                                {% if media.title %}
+                                    <tr>
+                                        <th>{{ 'admin.media.field.title'|trans }}</th>
+                                        <td>{{ media.title }}</td>
+                                    </tr>
+                                {% endif %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="card mt-3">
+                        <div class="card-header">
+                            <h5 class="card-title">{{ 'admin.media.actions'|trans }}</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="d-grid gap-2">
+                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('download').setEntityId(media.id) }}"
+                                   class="btn btn-outline-primary">
+                                    <i class="fa fa-download"></i>
+                                    {{ 'admin.media.action.download'|trans }}
+                                </a>
+
+                                {% if not media.private %}
+                                    <button type="button"
+                                            class="btn btn-outline-secondary"
+                                            onclick="copyToClipboard('{{ webPath }}')">
+                                        <i class="fa fa-copy"></i>
+                                        {{ 'admin.media.action.copy_url'|trans }}
+                                    </button>
+                                {% endif %}
+
+                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('delete').setEntityId(media.id) }}"
+                                   class="btn btn-outline-danger"
+                                   onclick="return confirm('{{ 'admin.media.confirm_delete'|trans }}')">
+                                    <i class="fa fa-trash"></i>
+                                    {{ 'admin.form.delete'|trans }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(text) {
+            // Check if the modern Clipboard API is available
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(function() {
+                    showSuccessNotification();
+                }).catch(function(err) {
+                    console.error('Clipboard API failed: ', err);
+                    fallbackCopyToClipboard(text);
+                });
+            } else {
+                // Fallback method for unsupported browsers or non-secure contexts
+                fallbackCopyToClipboard(text);
+            }
+        }
+
+        function fallbackCopyToClipboard(text) {
+            // Create a temporary textarea element
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+
+            // Make it invisible
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            textArea.style.top = '-999999px';
+
+            // Add to DOM
+            document.body.appendChild(textArea);
+
+            // Select and copy
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    showSuccessNotification();
+                } else {
+                    showErrorNotification();
+                }
+            } catch (err) {
+                console.error('Fallback copy failed: ', err);
+                showErrorNotification();
+            } finally {
+                // Clean up
+                document.body.removeChild(textArea);
+            }
+        }
+
+        function showSuccessNotification() {
+            const toast = document.createElement('div');
+            toast.className = 'alert alert-success position-fixed';
+            toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            toast.innerHTML = '<i class="fa fa-check"></i> {{ 'admin.media.url_copied'|trans }}';
+            document.body.appendChild(toast);
+
+            setTimeout(function() {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
+
+        function showErrorNotification() {
+            const toast = document.createElement('div');
+            toast.className = 'alert alert-danger position-fixed';
+            toast.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+            toast.innerHTML = '<i class="fa fa-exclamation-triangle"></i> Erreur lors de la copie';
+            document.body.appendChild(toast);
+
+            setTimeout(function() {
+                if (toast.parentNode) {
+                    toast.remove();
+                }
+            }, 3000);
+        }
+    </script>
+
+    <style>
+        .media-preview-image {
+            cursor: zoom-in;
+        }
+
+        .media-preview-image:hover {
+            transform: scale(1.02);
+            transition: transform 0.2s ease;
+        }
+
+        .audio-preview, .pdf-preview, .file-preview {
+            padding: 2rem;
+        }
+
+        .table th {
+            width: 40%;
+            font-weight: 600;
+            color: #495057;
+        }
+    </style>
+{% endblock %}
