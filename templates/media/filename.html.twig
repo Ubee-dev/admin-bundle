@@ -1,6 +1,23 @@
-{# templates/Admin/media/filename.html.twig #}
+{# templates/media/filename.html.twig - Version avec troncature intelligente #}
 <div class="media-filename">
     {% set media = entity.instance %}
+
+    {# Fonction pour tronquer le nom de fichier au milieu #}
+    {% set filename = media.filename %}
+    {% set maxLength = 40 %}
+    {% if filename|length > maxLength %}
+        {% set extension = filename|split('.')|last %}
+        {% set nameWithoutExt = filename|slice(0, -(extension|length + 1)) %}
+        {% set keepStart = 15 %}
+        {% set keepEnd = 10 %}
+        {% if nameWithoutExt|length > (keepStart + keepEnd) %}
+            {% set truncatedName = nameWithoutExt|slice(0, keepStart) ~ '...' ~ nameWithoutExt|slice(-(keepEnd)) ~ '.' ~ extension %}
+        {% else %}
+            {% set truncatedName = filename %}
+        {% endif %}
+    {% else %}
+        {% set truncatedName = filename %}
+    {% endif %}
 
     {% if media.isImage and not media.private %}
         <div class="d-flex align-items-center">
@@ -8,10 +25,10 @@
             <div class="me-2">
                 <i class="fa fa-image text-primary" style="font-size: 24px;"></i>
             </div>
-            <div>
-                <strong>{{ media.filename }}</strong>
+            <div class="flex-grow-1 min-width-0">
+                <strong class="text-truncate d-block" title="{{ media.filename }}">{{ truncatedName }}</strong>
                 {% if media.alt %}
-                    <br><small class="text-muted">{{ media.alt }}</small>
+                    <small class="text-muted text-truncate d-block">{{ media.alt }}</small>
                 {% endif %}
             </div>
         </div>
@@ -29,15 +46,33 @@
                 <i class="fa fa-file text-secondary me-2"></i>
             {% endif %}
 
-            <div>
-                <strong>{{ media.filename }}</strong>
-                {% if media.private %}
-                    <span class="badge bg-warning ms-2">Private</span>
-                {% endif %}
-                {% if media.alt %}
-                    <br><small class="text-muted">{{ media.alt }}</small>
-                {% endif %}
+            <div class="flex-grow-1 min-width-0">
+                <strong class="text-truncate d-block" title="{{ media.filename }}">{{ truncatedName }}</strong>
+                <div class="d-flex align-items-center gap-2">
+                    {% if media.private %}
+                        <span class="badge bg-warning">Private</span>
+                    {% endif %}
+                    {% if media.alt %}
+                        <small class="text-muted text-truncate">{{ media.alt }}</small>
+                    {% endif %}
+                </div>
             </div>
         </div>
     {% endif %}
 </div>
+
+<style>
+    .media-filename {
+        max-width: 100%;
+    }
+
+    .media-filename .min-width-0 {
+        min-width: 0; /* Permet la troncature dans flexbox */
+    }
+
+    .media-filename .text-truncate {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+</style>

@@ -4,16 +4,34 @@
 {% block page_title %}{{ 'admin.media.view.title'|trans }}{% endblock %}
 
 {% block main %}
+    {# Fonction pour tronquer le nom de fichier au milieu #}
+    {% set filename = media.filename %}
+    {% set maxLength = 50 %} {# Un peu plus long pour la page view #}
+    {% if filename|length > maxLength %}
+        {% set extension = filename|split('.')|last %}
+        {% set nameWithoutExt = filename|slice(0, -(extension|length + 1)) %}
+        {% set keepStart = 20 %}
+        {% set keepEnd = 15 %}
+        {% if nameWithoutExt|length > (keepStart + keepEnd) %}
+            {% set truncatedFilename = nameWithoutExt|slice(0, keepStart) ~ '...' ~ nameWithoutExt|slice(-(keepEnd)) ~ '.' ~ extension %}
+        {% else %}
+            {% set truncatedFilename = filename %}
+        {% endif %}
+    {% else %}
+        {% set truncatedFilename = filename %}
+    {% endif %}
+
     <div class="content">
         <div class="content-header">
             <div class="content-header-title">
                 <h1 class="title">
                     <i class="fa fa-eye"></i>
-                    {{ 'admin.media.view.title'|trans }}: {{ media.filename }}
+                    {{ 'admin.media.view.title'|trans }}:
+                    <span class="filename-display" title="{{ media.filename }}">{{ truncatedFilename }}</span>
                 </h1>
             </div>
             <div class="content-header-toolbar">
-                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('index') }}"
+                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\MediaCrudController').setAction('index') }}"
                    class="btn btn-secondary">
                     <i class="fa fa-arrow-left"></i>
                     {{ 'admin.action.back_to_list'|trans }}
@@ -78,7 +96,9 @@
                                 <tbody>
                                 <tr>
                                     <th>{{ 'admin.media.field.filename'|trans }}</th>
-                                    <td>{{ media.filename }}</td>
+                                    <td>
+                                        <span class="filename-cell" title="{{ media.filename }}">{{ truncatedFilename }}</span>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>{{ 'admin.media.field.content_type'|trans }}</th>
@@ -133,7 +153,7 @@
                         </div>
                         <div class="card-body">
                             <div class="d-grid gap-2">
-                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('download').setEntityId(media.id) }}"
+                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\MediaCrudController').setAction('download').setEntityId(media.id) }}"
                                    class="btn btn-outline-primary">
                                     <i class="fa fa-download"></i>
                                     {{ 'admin.media.action.download'|trans }}
@@ -148,7 +168,7 @@
                                     </button>
                                 {% endif %}
 
-                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\Admin\\MediaCrudController').setAction('delete').setEntityId(media.id) }}"
+                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\MediaCrudController').setAction('delete').setEntityId(media.id) }}"
                                    class="btn btn-outline-danger"
                                    onclick="return confirm('{{ 'admin.media.confirm_delete'|trans }}')">
                                     <i class="fa fa-trash"></i>
@@ -258,6 +278,24 @@
             width: 40%;
             font-weight: 600;
             color: #495057;
+        }
+
+        /* Styles pour la troncature des noms de fichier */
+        .filename-display, .filename-cell {
+            word-break: break-all;
+            cursor: help;
+        }
+
+        .filename-display:hover, .filename-cell:hover {
+            text-decoration: underline;
+        }
+
+        /* Pour les petits écrans, on permet le wrap */
+        @media (max-width: 768px) {
+            .filename-display, .filename-cell {
+                word-break: break-all;
+                white-space: normal;
+            }
         }
     </style>
 {% endblock %}
