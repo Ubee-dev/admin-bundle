@@ -96,6 +96,24 @@ class MediaCrudController extends AbstractCrudController
 
             BooleanField::new('private', 'admin.media.field.private'),
 
+            // Nouveau champ pour afficher les dimensions
+            TextField::new('dimensionsString', 'admin.media.field.dimensions')
+                ->hideOnForm()
+                ->formatValue(function ($value, $entity) {
+                    if ($entity->isImage() && $entity->hasDimensions()) {
+                        return $entity->getDimensionsString() . ' px';
+                    }
+                    return $entity->isImage() ? 'N/A' : '-';
+                }),
+
+            IntegerField::new('width', 'admin.media.field.width')
+                ->hideOnIndex()
+                ->hideOnForm(),
+
+            IntegerField::new('height', 'admin.media.field.height')
+                ->hideOnIndex()
+                ->hideOnForm(),
+
             TextField::new('alt', 'admin.media.field.alt')
                 ->hideOnIndex(),
 
@@ -255,7 +273,7 @@ class MediaCrudController extends AbstractCrudController
         }
 
         $url = $this->adminUrlGenerator
-            ->setController(MediaCrudController::class)
+            ->setController(__CLASS__)
             ->setAction(Action::INDEX)
             ->generateUrl();
 

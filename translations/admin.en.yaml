@@ -47,6 +47,7 @@ admin:
       basic_info: 'Basic Information'
       metadata: 'Metadata'
       accessibility: 'Accessibility'
+      dimensions: 'Image Dimensions'
     field:
       filename: 'Filename'
       file: 'File'
@@ -58,8 +59,12 @@ admin:
       title: 'Title'
       created_at: 'Uploaded On'
       updated_at: 'Last Updated'
+      width: 'Width'
+      height: 'Height'
+      dimensions: 'Dimensions'
       alt_help: 'Alternative text for accessibility (describes the image for screen readers)'
       title_help: 'Title displayed when hovering over the image'
+      dimensions_help: 'Image dimensions in pixels (width x height)'
     action:
       add: 'Upload Media'
       upload: 'Upload File'
@@ -71,11 +76,13 @@ admin:
       copy_url: 'Copy URL'
       open_pdf: 'Open PDF'
       edit_meta: 'Edit Metadata'
+      update_dimensions: 'Update Dimensions'
     help:
       file_upload: 'Supported formats: images, videos, audio files, PDF, documents (max 5MB)'
       alt: 'Descriptive text for screen readers and SEO (recommended for images)'
       title: 'Additional information displayed on hover'
       private: 'Private files are not accessible via direct URL'
+      dimensions: 'Dimensions are automatically detected for images. Use the update command to refresh existing media.'
     placeholder:
       alt: 'Describe what is shown in the image...'
       title: 'Additional context or title...'
@@ -95,6 +102,8 @@ admin:
     replace_image: 'Replace Image'
     remove_image: 'Remove Image'
     file_too_large: 'File is too large (max 5MB)'
+    dimensions_na: 'N/A'
+    dimensions_unknown: 'Unknown'
   
   # Form buttons and general actions (pour la médiathèque)
   form:
@@ -111,12 +120,16 @@ admin:
       updated: 'Successfully updated'
       deleted: 'Successfully deleted'
       uploaded: 'File uploaded successfully'
+      dimensions_updated: 'Image dimensions updated successfully'
     error:
       default: 'An error occurred'
       upload_failed: 'Upload failed. Please try again.'
       no_file_selected: 'Please select a file to upload.'
       delete_failed: 'Failed to delete the file.'
       update_failed: 'Error updating metadata'
+      dimensions_failed: 'Failed to extract image dimensions'
+    info:
+      dimensions_not_available: 'Dimensions not available for this file type'
   
   # Actions communes
   action:

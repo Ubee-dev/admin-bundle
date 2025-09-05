@@ -2,7 +2,7 @@ admin.admin_user.entity.singular: 'Administrateur'
 admin.admin_user.entity.plural: 'Administrateurs'
 admin.admin_user.page.index: 'Liste des administrateurs'
 admin.admin_user.page.new: 'Créer un nouvel administrateur'
-admin.admin_user.page.edit: 'Modifier l’administrateur'
+admin.admin_user.page.edit: "Modifier l'administrateur"
 admin.admin_user.field.firstName: 'Prénom'
 admin.admin_user.field.lastName: 'Nom'
 admin.admin_user.field.email: 'Email'
@@ -17,3 +17,125 @@ admin.admin_user.action.delete: 'Supprimer'
 admin.admin_user.action.edit: 'Modifier'
 admin.menu.administrators: "Administrateurs"
 common.id: 'ID'
+
+# Nouvelles traductions pour la médiathèque
+admin:
+  menu:
+    media: 'Médiathèque'
+  
+  # Traductions des médias
+  media:
+    entity_singular: 'Média'
+    entity_plural: 'Médiathèque'
+    list: 'Médiathèque'
+    new: 'Téléverser un média'
+    edit: 'Modifier le média'
+    detail: 'Détails du média'
+    edit_meta: 'Modifier les métadonnées'
+    preview: 'Aperçu'
+    file_type: 'Type de fichier'
+    file_info: 'Informations du fichier'
+    open_file: 'Ouvrir le fichier'
+    upload:
+      title: 'Téléverser un nouveau média'
+    view:
+      title: 'Voir le média'
+    panel:
+      basic_info: 'Informations de base'
+      metadata: 'Métadonnées'
+      accessibility: 'Accessibilité'
+      dimensions: "Dimensions de l'image"
+    field:
+      filename: 'Nom du fichier'
+      file: 'Fichier'
+      content_type: 'Type'
+      content_size: 'Taille'
+      context: 'Contexte'
+      private: 'Privé'
+      alt: 'Texte alternatif'
+      title: 'Titre'
+      created_at: 'Téléversé le'
+      updated_at: 'Dernière modification'
+      width: 'Largeur'
+      height: 'Hauteur'
+      dimensions: 'Dimensions'
+      alt_help: "Texte alternatif pour l'accessibilité (décrit l'image pour les lecteurs d'écran)"
+      title_help: "Titre affiché au survol de l'image"
+      dimensions_help: "Dimensions de l'image en pixels (largeur x hauteur)"
+    action:
+      add: 'Téléverser un média'
+      upload: 'Téléverser le fichier'
+      edit: 'Modifier'
+      view: 'Voir'
+      view_on_site: 'Voir sur le site'
+      delete: 'Supprimer'
+      download: 'Télécharger'
+      copy_url: "Copier l'URL"
+      open_pdf: 'Ouvrir le PDF'
+      edit_meta: 'Modifier les métadonnées'
+      update_dimensions: 'Mettre à jour les dimensions'
+    help:
+      file_upload: 'Formats supportés : images, vidéos, fichiers audio, PDF, documents (max 5Mo)'
+      alt: "Texte descriptif pour les lecteurs d'écran et le SEO (recommandé pour les images)"
+      title: 'Information additionnelle affichée au survol'
+      private: 'Les fichiers privés ne sont pas accessibles via une URL directe'
+      dimensions: 'Les dimensions sont automatiquement détectées pour les images. Utilisez la commande de mise à jour pour rafraîchir les médias existants.'
+    placeholder:
+      alt: "Décrivez ce qui est montré dans l'image..."
+      title: 'Contexte ou titre supplémentaire...'
+    details: 'Détails du fichier'
+    actions: 'Actions'
+    video_not_supported: 'Votre navigateur ne supporte pas la lecture vidéo'
+    audio_not_supported: 'Votre navigateur ne supporte pas la lecture audio'
+    pdf_preview_not_available: "L'aperçu PDF n'est pas disponible dans le navigateur"
+    preview_not_available: 'Aperçu non disponible pour ce type de fichier'
+    url_copied: 'URL copiée dans le presse-papier !'
+    confirm_delete: 'Êtes-vous sûr de vouloir supprimer ce fichier média ? Cette action ne peut pas être annulée.'
+    choose_file: 'Choisir un fichier'
+    please_upload_valid_image: 'Veuillez téléverser un fichier image valide (JPEG, PNG, WebP)'
+    no_media: 'Aucun média'
+    browse: 'Parcourir'
+    select_image: 'Sélectionner une image'
+    replace_image: "Remplacer l'image"
+    remove_image: "Supprimer l'image"
+    file_too_large: 'Le fichier est trop volumineux (max 5Mo)'
+    dimensions_na: 'N/A'
+    dimensions_unknown: 'Inconnues'
+  
+  # Boutons de formulaire et actions générales
+  form:
+    save: 'Sauvegarder'
+    cancel: 'Annuler'
+    delete: 'Supprimer'
+    edit: 'Modifier'
+    create: 'Créer'
+  
+  # Messages liés aux médias
+  messages:
+    success:
+      created: 'Créé avec succès'
+      updated: 'Mis à jour avec succès'
+      deleted: 'Supprimé avec succès'
+      uploaded: 'Fichier téléversé avec succès'
+      dimensions_updated: "Dimensions de l'image mises à jour avec succès"
+    error:
+      default: 'Une erreur est survenue'
+      upload_failed: 'Le téléversement a échoué. Veuillez réessayer.'
+      no_file_selected: 'Veuillez sélectionner un fichier à téléverser.'
+      delete_failed: 'Échec de la suppression du fichier.'
+      update_failed: 'Erreur lors de la mise à jour des métadonnées'
+      dimensions_failed: "Échec de l'extraction des dimensions de l'image"
+    info:
+      dimensions_not_available: 'Dimensions non disponibles pour ce type de fichier'
+  
+  # Actions communes
+  action:
+    view: 'Voir'
+    save_and_add_another: 'Sauvegarder et ajouter un autre'
+    back_to_list: 'Retour à la liste'
+    save: 'Sauvegarder'
+  
+  # Communs
+  common:
+    yes: 'Oui'
+    no: 'Non'
