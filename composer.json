@@ -2,7 +2,7 @@
   "name": "khalil1608/admin-bundle",
   "description": "Admin bundle",
   "type": "symfony-bundle",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "autoload": {
     "psr-4": {
       "Khalil1608\\AdminBundle\\": "src/",
@@ -16,7 +16,7 @@
   },
   "require": {
     "easycorp/easyadmin-bundle": "^4.24",
-    "khalil1608/lib-bundle": "1.*"
+    "khalil1608/lib-bundle": "2.*"
   },
   "minimum-stability": "dev",
   "prefer-stable" : true
