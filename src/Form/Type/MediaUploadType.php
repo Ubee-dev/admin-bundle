@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\Type;
+namespace UbeeDev\AdminBundle\Form\Type;
 
-use Khalil1608\LibBundle\Service\MediaManager;
+use UbeeDev\LibBundle\Service\MediaManager;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;

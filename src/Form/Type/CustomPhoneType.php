@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\Type;
+namespace UbeeDev\AdminBundle\Form\Type;
 
-use Khalil1608\AdminBundle\Form\DataTransformer\PhoneNumberTransformer;
+use UbeeDev\AdminBundle\Form\DataTransformer\PhoneNumberTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\FormBuilderInterface;

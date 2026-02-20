@@ -31,7 +31,7 @@
                 </h1>
             </div>
             <div class="content-header-toolbar">
-                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\MediaCrudController').setAction('index') }}"
+                <a href="{{ ea_url().setController('UbeeDev\\AdminBundle\\Controller\\MediaCrudController').setAction('index') }}"
                    class="btn btn-secondary">
                     <i class="fa fa-arrow-left"></i>
                     {{ 'admin.action.back_to_list'|trans }}
@@ -153,7 +153,7 @@
                         </div>
                         <div class="card-body">
                             <div class="d-grid gap-2">
-                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\MediaCrudController').setAction('download').setEntityId(media.id) }}"
+                                <a href="{{ ea_url().setController('UbeeDev\\AdminBundle\\Controller\\MediaCrudController').setAction('download').setEntityId(media.id) }}"
                                    class="btn btn-outline-primary">
                                     <i class="fa fa-download"></i>
                                     {{ 'admin.media.action.download'|trans }}
@@ -168,7 +168,7 @@
                                     </button>
                                 {% endif %}
 
-                                <a href="{{ ea_url().setController('Khalil1608\\AdminBundle\\Controller\\MediaCrudController').setAction('delete').setEntityId(media.id) }}"
+                                <a href="{{ ea_url().setController('UbeeDev\\AdminBundle\\Controller\\MediaCrudController').setAction('delete').setEntityId(media.id) }}"
                                    class="btn btn-outline-danger"
                                    onclick="return confirm('{{ 'admin.media.confirm_delete'|trans }}')">
                                     <i class="fa fa-trash"></i>

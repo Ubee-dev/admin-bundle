@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\EventSubscriber;
+namespace UbeeDev\AdminBundle\EventSubscriber;
 
-use Khalil1608\LibBundle\Service\MediaManager;
+use UbeeDev\LibBundle\Service\MediaManager;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;

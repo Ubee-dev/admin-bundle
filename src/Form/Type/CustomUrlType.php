@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\Type;
+namespace UbeeDev\AdminBundle\Form\Type;
 
-use Khalil1608\AdminBundle\Form\DataTransformer\UrlTransformer;
+use UbeeDev\AdminBundle\Form\DataTransformer\UrlTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType as SymfonyUrlType;
 use Symfony\Component\Form\FormBuilderInterface;

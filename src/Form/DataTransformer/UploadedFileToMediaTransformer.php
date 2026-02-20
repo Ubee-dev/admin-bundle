@@ -1,10 +1,10 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\DataTransformer;
+namespace UbeeDev\AdminBundle\Form\DataTransformer;
 
 
 use App\Entity\Media;
-use Khalil1608\LibBundle\Service\MediaManager;
+use UbeeDev\LibBundle\Service\MediaManager;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 

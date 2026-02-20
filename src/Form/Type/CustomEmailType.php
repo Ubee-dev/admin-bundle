@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\Type;
+namespace UbeeDev\AdminBundle\Form\Type;
 
-use Khalil1608\AdminBundle\Form\DataTransformer\EmailTransformer;
+use UbeeDev\AdminBundle\Form\DataTransformer\EmailTransformer;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType as SymfonyEmailType;
 use Symfony\Component\Form\FormBuilderInterface;

@@ -1,9 +1,9 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Twig;
+namespace UbeeDev\AdminBundle\Twig;
 
 use App\Entity\Media;
-use Khalil1608\LibBundle\Service\MediaManager;
+use UbeeDev\LibBundle\Service\MediaManager;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 

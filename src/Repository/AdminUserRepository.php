@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Repository;
+namespace UbeeDev\AdminBundle\Repository;
 
-use Khalil1608\AdminBundle\Entity\AdminUser;
+use UbeeDev\AdminBundle\Entity\AdminUser;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 

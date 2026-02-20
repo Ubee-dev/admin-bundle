@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\Type;
+namespace UbeeDev\AdminBundle\Form\Type;
 
-use Khalil1608\AdminBundle\Form\DataTransformer\NameTransformer;
+use UbeeDev\AdminBundle\Form\DataTransformer\NameTransformer;
 use Symfony\Component\Form\Extension\Core\Type\TextType as SymfonyNameType;
 use Symfony\Component\Form\FormBuilderInterface;
 

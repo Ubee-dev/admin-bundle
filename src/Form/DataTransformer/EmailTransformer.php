@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\DataTransformer;
+namespace UbeeDev\AdminBundle\Form\DataTransformer;
 
-use Khalil1608\LibBundle\Model\Type\Email;
+use UbeeDev\LibBundle\Model\Type\Email;
 use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 

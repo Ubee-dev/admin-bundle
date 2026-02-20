@@ -1,10 +1,10 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Controller\Admin;
+namespace UbeeDev\AdminBundle\Controller\Admin;
 
 use App\Entity\Media;
 use Doctrine\ORM\EntityManagerInterface;
-use Khalil1608\LibBundle\Service\MediaManager;
+use UbeeDev\LibBundle\Service\MediaManager;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\DateTimeField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
@@ -80,7 +80,7 @@ class MediaCrudController extends AbstractCrudController
             IdField::new('id')->hideOnForm(),
 
             TextField::new('filename', 'admin.media.field.filename')
-                ->setTemplatePath('@Khalil1608Admin/media/filename.html.twig'),
+                ->setTemplatePath('@UbeeDevAdmin/media/filename.html.twig'),
 
             TextField::new('contentType', 'admin.media.field.content_type'),
 
@@ -170,7 +170,7 @@ class MediaCrudController extends AbstractCrudController
             }
         }
 
-        return $this->render('@Khalil1608Admin/media/upload.html.twig');
+        return $this->render('@UbeeDevAdmin/media/upload.html.twig');
     }
 
     public function editMeta(AdminContext $context, Request $request): Response
@@ -209,7 +209,7 @@ class MediaCrudController extends AbstractCrudController
             $webPath = null;
         }
 
-        return $this->render('@Khalil1608Admin/media/edit_meta.html.twig', [
+        return $this->render('@UbeeDevAdmin/media/edit_meta.html.twig', [
             'media' => $media,
             'webPath' => $webPath,
         ]);
@@ -242,7 +242,7 @@ class MediaCrudController extends AbstractCrudController
 
         try {
             $webPath = $this->mediaManager->getWebPath($media);
-            return $this->render('@Khalil1608Admin/media/view.html.twig', [
+            return $this->render('@UbeeDevAdmin/media/view.html.twig', [
                 'media' => $media,
                 'webPath' => $webPath,
             ]);

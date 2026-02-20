@@ -1,9 +1,9 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\Field;
+namespace UbeeDev\AdminBundle\Form\Field;
 
 use EasyCorp\Bundle\EasyAdminBundle\Field\Field;
-use Khalil1608\AdminBundle\Form\Type\MediaUploadType;
+use UbeeDev\AdminBundle\Form\Type\MediaUploadType;
 
 final class MediaUploadField
 {
@@ -29,7 +29,7 @@ final class MediaUploadField
                 'show_description' => false,
                 'accept_types' => 'image/*',
             ])
-            ->setTemplatePath('@Khalil1608Admin/form_theme/media_upload_widget.html.twig');
+            ->setTemplatePath('@UbeeDevAdmin/form_theme/media_upload_widget.html.twig');
     }
 
     /**

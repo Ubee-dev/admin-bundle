@@ -1,6 +1,6 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Controller\Admin;
+namespace UbeeDev\AdminBundle\Controller\Admin;
 
 use App\Entity\AdminUser;
 use Doctrine\ORM\EntityManagerInterface;
@@ -12,7 +12,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
-use Khalil1608\AdminBundle\Form\Type\CustomNameType;
+use UbeeDev\AdminBundle\Form\Type\CustomNameType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 

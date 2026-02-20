@@ -1,6 +1,6 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Controller;
+namespace UbeeDev\AdminBundle\Controller;
 
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -30,7 +30,7 @@ class AdminLoginController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         $response = new Response();
-        $response->setContent($twig->render('@Khalil1608Admin/Security/login.html.twig', [
+        $response->setContent($twig->render('@UbeeDevAdmin/Security/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
         ]));

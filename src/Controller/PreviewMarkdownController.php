@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Controller;
+namespace UbeeDev\AdminBundle\Controller;
 
-use Khalil1608\LibBundle\Service\MarkdownParser;
+use UbeeDev\LibBundle\Service\MarkdownParser;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,7 +20,7 @@ class PreviewMarkdownController extends AbstractController
      */
     public function preview(Request $request, MarkdownParser $parser, Environment $environment): Response
     {
-        return new Response($environment->render('@Khalil1608Admin/markdown-preview.html.twig', [
+        return new Response($environment->render('@UbeeDevAdmin/markdown-preview.html.twig', [
             'content' => $parser->parse($request->request->get('content'))
         ]));
     }

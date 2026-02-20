@@ -1,22 +1,23 @@
 {
-  "name": "khalil1608/admin-bundle",
+  "name": "ubee-dev/admin-bundle",
   "description": "Admin bundle",
   "type": "symfony-bundle",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "autoload": {
     "psr-4": {
-      "Khalil1608\\AdminBundle\\": "src/",
-      "Khalil1608\\AdminBundle\\Tests\\": "tests/"
+      "UbeeDev\\AdminBundle\\": "src/",
+      "UbeeDev\\AdminBundle\\Tests\\": "tests/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Khalil1608\\AdminBundle\\Tests\\": "tests/"
+      "UbeeDev\\AdminBundle\\Tests\\": "tests/"
     }
   },
   "require": {
+    "php": "^8.4",
     "easycorp/easyadmin-bundle": "^4.24",
-    "khalil1608/lib-bundle": "2.*"
+    "ubee-dev/lib-bundle": "^2.0.15"
   },
   "minimum-stability": "dev",
   "prefer-stable" : true

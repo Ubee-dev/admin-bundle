@@ -1,8 +1,8 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Form\DataTransformer;
+namespace UbeeDev\AdminBundle\Form\DataTransformer;
 
-use Khalil1608\LibBundle\Model\Type\Name;
+use UbeeDev\LibBundle\Model\Type\Name;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
 class NameTransformer

@@ -1,9 +1,9 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Controller\Admin;
+namespace UbeeDev\AdminBundle\Controller\Admin;
 
 use App\Entity\Media;
-use Khalil1608\LibBundle\Service\MediaManager;
+use UbeeDev\LibBundle\Service\MediaManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

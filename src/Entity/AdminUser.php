@@ -1,13 +1,12 @@
 <?php
 
-namespace Khalil1608\AdminBundle\Entity;
+namespace UbeeDev\AdminBundle\Entity;
 
-use Khalil1608\LibBundle\Doctrine\DBAL\Types\Type;
-use Khalil1608\LibBundle\Model\Type\Name;
-use Khalil1608\AdminBundle\Repository\AdminUserRepository;
+use UbeeDev\LibBundle\Doctrine\DBAL\Types\Type;
+use UbeeDev\LibBundle\Model\Type\Name;
+use UbeeDev\AdminBundle\Repository\AdminUserRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use JetBrains\PhpStorm\Pure;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -51,7 +50,7 @@ abstract class AdminUser implements UserInterface, PasswordAuthenticatedUserInte
         return $this->id;
     }
 
-    #[Pure] public function getEmail(): ?string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
@@ -68,7 +67,6 @@ abstract class AdminUser implements UserInterface, PasswordAuthenticatedUserInte
      *
      * @see UserInterface
      */
-    #[Pure]
     #[\Override] public function getUserIdentifier(): string
     {
         return $this->email;
@@ -77,7 +75,6 @@ abstract class AdminUser implements UserInterface, PasswordAuthenticatedUserInte
     /**
      * @see UserInterface
      */
-    #[Pure]
     #[\Override] public function getRoles(): array
     {
         $roles = $this->roles;
@@ -98,7 +95,6 @@ abstract class AdminUser implements UserInterface, PasswordAuthenticatedUserInte
     /**
      * @see PasswordAuthenticatedUserInterface
      */
-    #[Pure]
     #[\Override] public function getPassword(): ?string
     {
         return $this->password;
@@ -157,7 +153,6 @@ abstract class AdminUser implements UserInterface, PasswordAuthenticatedUserInte
     /**
      * @see UserInterface
      */
-    #[Pure]
     #[\Override] public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
