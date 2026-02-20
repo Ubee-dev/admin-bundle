@@ -16,7 +16,7 @@
   "require": {
     "php": "^8.4",
     "easycorp/easyadmin-bundle": "^4.24",
-    "ubee-dev/lib-bundle": "^2.0.15"
+    "ubee-dev/lib-bundle": "^2.0.*"
   },
   "minimum-stability": "dev",
   "prefer-stable" : true
