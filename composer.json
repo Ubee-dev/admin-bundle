@@ -2,7 +2,6 @@
   "name": "ubee-dev/admin-bundle",
   "description": "Admin bundle",
   "type": "symfony-bundle",
-  "version": "1.0.7",
   "autoload": {
     "psr-4": {
       "UbeeDev\\AdminBundle\\": "src/",
