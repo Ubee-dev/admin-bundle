@@ -3,9 +3,10 @@
 namespace UbeeDev\AdminBundle\Form\DataTransformer;
 
 use UbeeDev\LibBundle\Model\Type\Name;
+use Symfony\Component\Form\DataTransformerInterface;
 use Symfony\Component\Form\Exception\TransformationFailedException;
 
-class NameTransformer
+class NameTransformer implements DataTransformerInterface
 {
     /**
      * Transform object Name to string for display in form.
